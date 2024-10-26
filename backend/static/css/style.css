@@ -1,0 +1,24 @@
+body {
+    display: flex;
+    height: 100vh;
+}
+.sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background-color: #343a40;
+    color: white;
+    transition: all 0.3s;
+}
+.sidebar .nav-link {
+    color: white;
+}
+.sidebar .nav-link:hover {
+    background-color: #495057;
+}
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+.navbar {
+    z-index: 1;
+}

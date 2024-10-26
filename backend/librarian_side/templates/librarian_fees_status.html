@@ -1,0 +1,43 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content">
+    <div class="container-fluid mt-4">
+        <h1 class="text-center mb-4">Fees History</h1>
+        
+        
+        
+        <div class="table-responsive"> <!-- Makes the table responsive -->
+            <table class="table table-striped border">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Payment Amount</th>
+                        <th scope="col">Due Amount</th>
+                        <th scope="col">Paid Date</th>
+                        <th scope="col">Payment Method</th>
+                        <th scope="col">Fees Status</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    {% for fee in student.fee.all %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.student_class }}</td>
+                        <td>{{ fee.payment_amount }}</td>
+                        <td>{{ fee.due_amount }}</td>
+                        <td>{{ fee.paid_date }}</td>
+                        <td>{{ fee.payment_method }}</td>
+                        <td>{{ fee.fees_status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

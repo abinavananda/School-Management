@@ -1,0 +1,21 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Edit Fees</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Render the form fields -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Update Fees</button>
+            {% if user.role == 'admin' %}
+                <a href="{% url 'admin_side:fees_status' student.id %}" class="btn btn-secondary">Cancel</a>  <!-- Add a cancel button -->
+            {% elif user.role == 'Staff' %}
+                <a href="{% url 'staff_side:staff_fees_status' student.id %}" class="btn btn-secondary">Cancel</a>  <!-- Add a cancel button -->
+            {% endif %}
+        </div>
+    </form>
+</div>
+
+{% endblock %}

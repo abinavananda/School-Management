@@ -1,0 +1,52 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content">
+    {% if messages %}
+    <div class="text-center">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} text-center">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <div class="container-fluid mt-4">
+        <h1 class="text-center mb-4">Library History</h1>
+        
+        
+        <div class="table-responsive"> <!-- Add responsiveness to the table -->
+            <table class="table table-striped border">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Book</th>
+                        <th scope="col">Book Status</th>
+                        <th scope="col">Borrow Date</th>
+                        <th scope="col">Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in student.book.all %}  <!-- Loop through each book related to the student -->
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.student_class }}</td>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.book_status }}</td>
+                        <td>{{ book.borrow_date }}</td>
+                        <td>{{ book.return_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock content %}

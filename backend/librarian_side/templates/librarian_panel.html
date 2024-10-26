@@ -1,0 +1,55 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="content">
+    {% if messages %}
+    <div class="text-center">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} text-center">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <div class="container-fluid mt-4">
+        <h1 class="text-center mb-4">Students Details</h1>
+        
+        <!-- Responsive Table Wrapper -->
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped border">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">DOB</th>
+                                <th scope="col">Class</th>
+                                <th scope="col">Library Status</th>
+                                <th scope="col">Fees Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in students %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ student.name }}</td>
+                                <td>{{ student.dob }}</td>
+                                <td>{{ student.student_class }}</td>
+                                <td><a href="{% url 'librarian_side:librarian_book_status' student.id %}"><i class="fa-solid fa-eye"></i></a></td>
+                                <td><a href="{% url 'librarian_side:librarian_fees_status' student.id %}"><i class="fa-solid fa-eye"></i></a></td>
+                                
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
